@@ -43,9 +43,42 @@ class _bmidatascreenState extends State<bmidatascreen> {
               ),
             ),
             Expanded(
-                child: Container(
-              color: Color.fromARGB(255, 2, 255, 255),
-            )),
+              child: Container(
+                  child: Bmicard(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "HEIGHT",
+                        style: labeltextstyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "182",
+                            style: TextStyle(
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            "cm",
+                            style: labeltextstyle,
+                          ),
+                        ],
+                      ),
+                      Slider(
+                        value: 100,
+                        min: 80,
+                        max: 200,
+                        onChanged: (value) {},
+                      )
+                    ]),
+              )),
+            ),
             Expanded(child: Container(color: Color.fromARGB(255, 12, 134, 22))),
             GestureDetector(
               onTap: () {
@@ -103,7 +136,7 @@ class GenderIconText extends StatelessWidget {
       children: [
         Icon(icon, size: 80),
         const SizedBox(height: 15),
-        Text(title, style: gendertextstyle),
+        Text(title, style: labeltextstyle),
       ],
     );
   }
