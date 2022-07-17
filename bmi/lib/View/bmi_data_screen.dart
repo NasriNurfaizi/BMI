@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:bmi/contant/contant.dart';
@@ -17,6 +18,16 @@ class bmidatascreen extends StatefulWidget {
 
 class _bmidatascreenState extends State<bmidatascreen> {
   int height = 100;
+  int weight = 50;
+  int age = 20;
+
+  double calculateBMI() {
+    double heightInMeter = height / 100;
+    //final h = pow(height, 2);
+    final h = (heightInMeter * heightInMeter);
+    final bmi = weight / h;
+    return bmi;
+  }
 
   // eror BMICARD untuk format usia dan berat
   @override
@@ -104,13 +115,16 @@ class _bmidatascreenState extends State<bmidatascreen> {
                               "WEIGHT",
                               style: labeltextstyle,
                             ),
-                            Text("60", style: numberTextStyle),
+                            Text("$weight", style: numberTextStyle),
                             SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 RawMaterialButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    weight += 1;
+                                    setState(() {});
+                                  },
                                   elevation: 0,
                                   child: Icon(Icons.add, color: Colors.white),
                                   shape: CircleBorder(),
@@ -122,7 +136,10 @@ class _bmidatascreenState extends State<bmidatascreen> {
                                 ),
                                 SizedBox(width: 10),
                                 RawMaterialButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    weight -= 1;
+                                    setState(() {});
+                                  },
                                   elevation: 0,
                                   child: Icon(
                                     Icons.remove,
@@ -150,13 +167,17 @@ class _bmidatascreenState extends State<bmidatascreen> {
                               "AGE",
                               style: labeltextstyle,
                             ),
-                            Text("20", style: numberTextStyle),
+                            Text("$age", style: numberTextStyle),
                             SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 RawMaterialButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    age += 1;
+                                    //age++; opsi lain
+                                    setState(() {});
+                                  },
                                   elevation: 0,
                                   child: Icon(Icons.add, color: Colors.white),
                                   shape: CircleBorder(),
@@ -168,7 +189,11 @@ class _bmidatascreenState extends State<bmidatascreen> {
                                 ),
                                 SizedBox(width: 10),
                                 RawMaterialButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    age -= 1;
+                                    //age--; other option
+                                    setState(() {});
+                                  },
                                   elevation: 0,
                                   child: Icon(
                                     Icons.remove,
@@ -193,10 +218,13 @@ class _bmidatascreenState extends State<bmidatascreen> {
             ),
             GestureDetector(
               onTap: () {
+                print(calculateBMI());
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: ((context) {
-                      return bmiresultscreen();
+                      return bmiresultscreen(
+                        bmi: calculateBMI(),
+                      );
                     }),
                   ),
                 );
@@ -253,7 +281,11 @@ class GenderIconText extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, size: 80),
+        Icon(
+          icon,
+          size: 80,
+          color: Colors.white,
+        ),
         const SizedBox(height: 15),
         Text(title, style: labeltextstyle),
       ],
