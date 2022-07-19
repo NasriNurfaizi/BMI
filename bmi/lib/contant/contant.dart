@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const Color primaryColor = Color(0xff0A0E21);
@@ -10,7 +7,7 @@ TextStyle labeltextstyle = const TextStyle(
   //Color(0xff8d8e98),
 );
 
-TextStyle numberTextStyle = TextStyle(
+TextStyle numberTextStyle = const TextStyle(
   fontSize: 50,
   fontWeight: FontWeight.bold,
   color: Colors.white,
