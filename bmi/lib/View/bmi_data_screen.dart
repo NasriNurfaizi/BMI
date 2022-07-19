@@ -1,13 +1,13 @@
-import 'dart:html';
-import 'dart:math';
-import 'dart:ui';
+//import 'dart:html';
+//import 'dart:math';
+//import 'dart:ui';
 
 import 'package:bmi/contant/contant.dart';
 import 'package:bmi/view/bmi_result_screen.dart';
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+//import 'package:flutter/src/foundation/key.dart';
+//import 'package:flutter/src/widgets/framework.dart';
 
 class bmidatascreen extends StatefulWidget {
   const bmidatascreen({Key? key}) : super(key: key);
@@ -20,6 +20,7 @@ class _bmidatascreenState extends State<bmidatascreen> {
   int height = 100;
   int weight = 50;
   int age = 20;
+  String? gender;
 
   double calculateBMI() {
     double heightInMeter = height / 100;
@@ -33,24 +34,41 @@ class _bmidatascreenState extends State<bmidatascreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff0A0E21),
+        backgroundColor: const Color(0xff0A0E21),
         appBar: AppBar(
-          title: Text("BMI Calculator"),
+          title: const Text("BMI Calculator"),
         ),
         body: Column(
           children: [
             Expanded(
               child: Row(
-                children: const [
+                children: [
                   Expanded(
-                    child: BmiCard(
-                      child: GenderIconText(icon: Icons.male, title: 'Male'),
+                    child: GestureDetector(
+                      onTap: () {
+                        gender = "male";
+                        setState(() {});
+                      },
+                      child: BmiCard(
+                        borderColor:
+                            (gender == "male") ? Colors.white : primaryColor,
+                        child: const GenderIconText(
+                            icon: Icons.male, title: 'Male'),
+                      ),
                     ),
                   ),
                   Expanded(
-                    child: BmiCard(
-                      child:
-                          GenderIconText(icon: Icons.female, title: 'Female'),
+                    child: GestureDetector(
+                      onTap: () {
+                        gender = "female";
+                        setState(() {});
+                      },
+                      child: BmiCard(
+                        borderColor:
+                            (gender == "female") ? Colors.white : primaryColor,
+                        child: const GenderIconText(
+                            icon: Icons.female, title: 'Female'),
+                      ),
                     ),
                   )
                 ],
@@ -69,7 +87,7 @@ class _bmidatascreenState extends State<bmidatascreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Row(
@@ -116,7 +134,7 @@ class _bmidatascreenState extends State<bmidatascreen> {
                               style: labeltextstyle,
                             ),
                             Text("$weight", style: numberTextStyle),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -252,15 +270,19 @@ class BmiCard extends StatelessWidget {
   const BmiCard({
     Key? key,
     required this.child,
+    this.borderColor = primaryColor,
   }) : super(key: key);
 
   final Widget child;
+  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            color: Color(0xff111328), borderRadius: BorderRadius.circular(15)),
+            color: Color(0xff111328),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: borderColor)),
         margin: EdgeInsets.all(15),
         child: child);
   }
