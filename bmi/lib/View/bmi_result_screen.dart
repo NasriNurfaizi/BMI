@@ -1,5 +1,5 @@
 import 'package:bmi/View/bmi_data_screen.dart';
-import 'package:bmi/contant/contant.dart';
+//import 'package:bmi/contant/contant.dart';
 import 'package:bmi/helpers/bmi_calculator.dart';
 import 'package:flutter/material.dart';
 

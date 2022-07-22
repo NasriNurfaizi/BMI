@@ -39,6 +39,7 @@ class _bmidatascreenState extends State<bmidatascreen> {
     return Scaffold(
         backgroundColor: const Color(0xff0A0E21),
         appBar: AppBar(
+          centerTitle: true,
           title: const Text("BMI Calculator"),
         ),
         body: Column(

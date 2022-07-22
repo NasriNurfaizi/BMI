@@ -9,8 +9,8 @@
             "name": "bmi",
             "cwd": "bmi",
             "request": "launch",
-            //"deviceId": "156977022100047",
-            "deviceId": "chrome",
+            "deviceId": "156977022100047",
+            //"deviceId": "chrome",
             // untuk device hp "56977022100047"
             //"deviceId": "emulator-5554",
             "type": "dart"
